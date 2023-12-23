@@ -36,6 +36,14 @@ class AuthorFilterLib
         return $this;
     }
 
+    public function withRelations(): static
+    {
+        $this->query->with('books');
+
+        return $this;
+    }
+
+
     private function handlerFilter($filter, $key): void
     {
         if (! empty($filter)) {

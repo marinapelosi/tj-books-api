@@ -11,7 +11,9 @@ class AuthorResource extends JsonResource
     {
         return [
             'id' => $this->CodAu,
-            'name' => $this->Nome
+            'name' => $this->Nome,
+            'books' => $this->books ?? [],
+            'books_quantity' => $this->books->count() ?? 0
         ];
     }
 }
