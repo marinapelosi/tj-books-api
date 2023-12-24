@@ -25,6 +25,9 @@ return [
             'required' => 'O campo Nome é obrigatório.',
             'unique' => 'Já existe registro com este nome.'
         ],
+        'description' => [
+            'unique' => 'Já existe registro com esta descrição.'
+        ],
         'title' => [
             'required' => 'O campo Título é obrigatório.',
             'max' => 'O Título só pode conter no máximo 40 caracteres.'

@@ -82,7 +82,7 @@ class SubjectController extends Controller
         $subject = Subject::findOrFail($id);
 
         try {
-            if (BookSubject::where('Assunto_CodAs', $subject->id)->first()) {
+            if (BookSubject::where('Assunto_CodAs', $subject->CodAs)->first()) {
                 throw new SubjectWithBooksException();
             }
 
