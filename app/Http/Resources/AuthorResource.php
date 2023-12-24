@@ -12,8 +12,8 @@ class AuthorResource extends JsonResource
         return [
             'id' => $this->CodAu,
             'name' => $this->Nome,
-            'books' => BookResourceWithoutAuthors::collection($this->books),
             'books_quantity' => $this->books->count() ?? 0,
+            'books' => BookResourceWithoutAuthors::collection($this->books),
         ];
     }
 }

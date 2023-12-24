@@ -4,6 +4,7 @@ use App\Http\Controllers\User\PassportAuthController;
 use App\Http\Controllers\Book\BookController;
 use App\Http\Controllers\Author\AuthorController;
 use App\Http\Controllers\Subject\SubjectController;
+use App\Http\Controllers\Report\DashboardController;
 use App\Http\Controllers\Report\BookByAuthorReportController;
 use App\Http\Controllers\Report\BookByAuthorGroupingAuthorsReportController;
 use App\Http\Controllers\Report\BookByAuthorGroupingBooksReportController;
@@ -51,6 +52,7 @@ Route::post('/login', [PassportAuthController::class, 'login'])->name('login');
     });
 
     Route::prefix('reports')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'generateReport']);
         Route::get('/book-by-author', [BookByAuthorReportController::class, 'generateReport']);
         Route::get('/book-by-author-grouping-authors', [BookByAuthorGroupingAuthorsReportController::class, 'generateReport']);
         Route::get('/book-by-author-grouping-books', [BookByAuthorGroupingBooksReportController::class, 'generateReport']);

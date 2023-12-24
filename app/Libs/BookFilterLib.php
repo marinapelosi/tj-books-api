@@ -38,6 +38,12 @@ class BookFilterLib
         return $this;
     }
 
+    public function limit(int $limit): static
+    {
+        $this->query->limit($limit);
+        return $this;
+    }
+
     public function withRelations(): static
     {
         $this->query->with('authors', 'subjects');

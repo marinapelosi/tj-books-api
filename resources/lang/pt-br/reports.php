@@ -16,4 +16,5 @@ return [
     'failed' => 'Ocorreu um erro ao tentar gerar o relatório',
     'success' => 'Relatório gerado com sucesso',
     'success_with_view_db' => 'Relatório gerado com sucesso com base em uma view no banco de dados',
+    'success_dashboard' => 'Relatório gerado com sucesso para o Home Dashboard',
 ];
