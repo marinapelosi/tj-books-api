@@ -4,6 +4,9 @@ use App\Http\Controllers\User\PassportAuthController;
 use App\Http\Controllers\Book\BookController;
 use App\Http\Controllers\Author\AuthorController;
 use App\Http\Controllers\Subject\SubjectController;
+use App\Http\Controllers\Report\BookByAuthorReportController;
+use App\Http\Controllers\Report\BookByAuthorGroupingAuthorsReportController;
+use App\Http\Controllers\Report\BookByAuthorGroupingBooksReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,5 +48,11 @@ Route::post('/login', [PassportAuthController::class, 'login'])->name('login');
         Route::post('/', [SubjectController::class, 'store']);
         Route::put('/{id}', [SubjectController::class, 'update']);
         Route::delete('/{id}', [SubjectController::class, 'destroy']);
+    });
+
+    Route::prefix('reports')->group(function () {
+        Route::get('/book-by-author', [BookByAuthorReportController::class, 'generateReport']);
+        Route::get('/book-by-author-grouping-authors', [BookByAuthorGroupingAuthorsReportController::class, 'generateReport']);
+        Route::get('/book-by-author-grouping-books', [BookByAuthorGroupingBooksReportController::class, 'generateReport']);
     });
 //});
