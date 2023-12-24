@@ -11,7 +11,8 @@ class SubjectResource extends JsonResource
     {
         return [
             'id' => $this->CodAs,
-            'description' => $this->Descricao
+            'description' => $this->Descricao,
+            'books_quantity' => $this->books->count() ?? 0
         ];
     }
 }
