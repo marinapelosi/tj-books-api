@@ -22,6 +22,6 @@ class Subject extends Model
 
     public function books(): BelongsToMany
     {
-        return $this->belongsToMany(Book::class, 'livro_assuntos', 'Assunto_CodAs', 'Livro_Codl');
+        return $this->belongsToMany(Book::class, 'livros_assuntos', 'Assunto_CodAs', 'Livro_Codl');
     }
 }

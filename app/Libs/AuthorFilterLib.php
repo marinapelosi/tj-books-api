@@ -31,6 +31,7 @@ class AuthorFilterLib
 
     public function orderBy(): static
     {
+        $this->query->orderBy('Nome');
         $this->query->orderBy('created_at', 'desc');
 
         return $this;

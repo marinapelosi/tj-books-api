@@ -32,7 +32,8 @@ class SubjectFilterLib
 
     public function orderBy(): static
     {
-        $this->query->orderBy('Descricao', 'asc');
+        $this->query->orderBy('Descricao');
+        $this->query->orderBy('created_at', 'desc');
 
         return $this;
     }

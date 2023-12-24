@@ -21,6 +21,10 @@ return [
     ],
 
     'custom' => [
+        'name' => [
+            'required' => 'O campo Nome é obrigatório.',
+            'unique' => 'Já existe registro com este nome.'
+        ],
         'title' => [
             'required' => 'O campo Título é obrigatório.',
         ],
