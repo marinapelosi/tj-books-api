@@ -37,7 +37,7 @@ Suas funcionalidades envolvem:
 
 ## Requisitos
 - [LARAGON](https://laragon.org/). Servidor virtual para rodar PHP, Apache, Nginx, Node.
-- [Postgres](https://www.postgresql.org/download/)
+- [PostgresSQL](https://www.postgresql.org/download/)
 - [DataGrip](https://www.jetbrains.com/datagrip/features/postgresql/) (Opcional: gerenciador para Postgres)
 
 ## Instalação
@@ -62,7 +62,7 @@ Suas funcionalidades envolvem:
    ```bash
    cp .env.example .env
 
-5. Em seu administrador do Postgres, crie o banco de dados e coloque os dados no `.env`, como no exemplo a seguir:
+5. Em seu administrador do PostgresSQL, crie o banco de dados e coloque os dados no `.env`, como no exemplo a seguir:
 
 ```
     DB_CONNECTION=pgsql
@@ -88,24 +88,23 @@ Suas funcionalidades envolvem:
    ```bash
    php artisan serve
 
-
 ### Comandos úteis
 
 #### Limpar o banco de dados do zero
-    ```bash
-       php artisan migrate:fresh --seed
+    
+    php artisan migrate:fresh --seed
   
 #### Limpar o cache do Laravel
-    ```bash
-       php artisan optimize:clear
+
+    php artisan optimize:clear
 
 #### Limpar o cache nas depedências
-    ```bash
-       composer dump-autoload
+
+    composer dump-autoload
 
 #### Executar TDD
-    ```bash
-       php artisan test
+
+    php artisan test
 
 -------
 
@@ -557,7 +556,7 @@ O Laravel foi escolhido como backend porque ele auxilia na criação de api segu
 O PostgresSQL foi escolhido devido ao seu suporte robusto a transações, escalabilidade e desempenho. A escolha também foi feita fizando sua capacidade de extensão para necessidades específicas, como o PostGIS, por exemplo, caso fosse necessário acoplar um sistema de cálculo de entrega para os livros.
 
 ### Melhorias de performance no banco de dados
-Conforme solicitado, a integridado do banco de dados foi mantida, os nomes dos campos foram mantidos. Entretanto, como autorizado, algumas mudanças foram feitas para fins de melhoria de desempenho. 
+Conforme solicitado, a integridade do banco de dados foi mantida, os nomes dos campos foram mantidos. Entretanto, como autorizado, algumas mudanças foram feitas para fins de melhoria de desempenho. 
 
 > Exceto, pelo nomes das tabelas que foram padronizados no plural, para melhoria semântica e evitar ambiguidades ou falta de entedimento em caso de expansão do banco de dados.
 
