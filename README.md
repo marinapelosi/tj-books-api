@@ -14,13 +14,13 @@ Para acessar a documentação do Front, [clique aqui]().
   - okUtilização de DTO para manter integridade dos campos no modelo de dados
   - okTabelas nativas do Laravel e Laravel Passport OAuth2
   - okRelacionamentos entre tabelas via Eloquent
-  - Criação de View no BD para relatório
+  - okCriação de View no BD para relatório
   - Diagramas
     - Fluxo ponta a ponta e validações
     - Sequência de cadastro
   - TDD
-  - Sugestão de melhorias
-  - Considerações finais
+  - okSugestão de melhorias
+  - okConsiderações finais
 
 
 -------
@@ -646,11 +646,21 @@ Outras views foram criadas, mas só esta está sendo usada por estar alinhada ao
 ## TDD
 
 -------
-## Sugestão de melhorias
+## Sugestão de melhorias para expansão deste projeto no futuro
+
+- Adição de campos para utilização pública, por exemplo, o ISBN do Livro.
+- Criação de campos de busca para utilizar as rotas `filter` criadas e assim facilitar o filtro de datable no front.
+- Com isso, adicionar filtros mais específicos, via backend para refletir melhor performance no front: data de criação (between), seleção múltipla de assuntos e autores para encontrar livros.
 
 -------
 ## Considerações finais
 
+Sugestões são super bem vindas.
+
+Agradeço pela sua atenção.
+
+-------
+@marinapelosi
 
 
 
