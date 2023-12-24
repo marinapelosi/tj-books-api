@@ -85,7 +85,7 @@ class AuthorController extends Controller
         $author = Author::findOrFail($id);
 
         try {
-            if (BookAuthor::where('Autor_CodAu', $author->id)->first()) {
+            if (BookAuthor::where('Autor_CodAu', $author->CodAu)->first()) {
                 throw new AuthorWithBooksException();
             }
 
