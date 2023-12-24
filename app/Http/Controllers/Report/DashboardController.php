@@ -84,8 +84,7 @@ class DashboardController extends Controller
             (new BookFilterLib())
                 ->withRelations()
                 ->orderBy()
-                ->limit($limit)
-                ->get()
+                ->getWithLimit()
         );
     }
 }

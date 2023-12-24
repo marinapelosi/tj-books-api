@@ -38,12 +38,6 @@ class BookFilterLib
         return $this;
     }
 
-    public function limit(int $limit): static
-    {
-        $this->query->limit($limit);
-        return $this;
-    }
-
     public function withRelations(): static
     {
         $this->query->with('authors', 'subjects');
@@ -72,5 +66,10 @@ class BookFilterLib
     public function get(): LengthAwarePaginator
     {
         return $this->query->paginate(20);
+    }
+
+    public function getWithLimit(int $limit = 5): Collection
+    {
+        return $this->query->take($limit)->get();
     }
 }

@@ -27,9 +27,11 @@ return [
         ],
         'title' => [
             'required' => 'O campo Título é obrigatório.',
+            'max' => 'O Título só pode conter no máximo 40 caracteres.'
         ],
         'publisher' => [
             'required' => 'O campo Editora é obrigatório.',
+            'max' => 'A Editora só pode conter no máximo 40 caracteres.'
         ],
         'edition' => [
             'required' => 'O campo Edição é obrigatório.',
