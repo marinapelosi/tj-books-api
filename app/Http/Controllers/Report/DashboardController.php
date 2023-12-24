@@ -22,11 +22,35 @@ class DashboardController extends Controller
         $dashboard = [
             'counters' => $this->getCounters(),
             'top_fives' => $this->getTopFives(),
-            'last_books' => $this->getLastBooks(10)
+            'last_books' => $this->getLastBooks(5)
         ];
         return response()->success(
             __('reports.success_dashboard'),
             $dashboard
+        );
+    }
+
+    public function generateCountersReport(): JsonResponse
+    {
+        return response()->success(
+            __('reports.success_dashboard_counters'),
+            $this->getCounters()
+        );
+    }
+
+    public function generateTopFivesReport(): JsonResponse
+    {
+        return response()->success(
+            __('reports.success_dashboard_top_fives'),
+            $this->getTopFives()
+        );
+    }
+
+    public function generateLastBooksReport(): JsonResponse
+    {
+        return response()->success(
+            __('reports.success_dashboard_last_books'),
+            $this->getLastBooks(5)
         );
     }
 
@@ -36,6 +60,7 @@ class DashboardController extends Controller
           'books' => Book::count() ?? 0,
           'authors' => Author::count() ?? 0,
           'subjects' => Subject::count() ?? 0,
+          'sum_books_prices' => str_replace('.', ',', (float) Book::sum('Valor'))
         ];
     }
 

@@ -53,6 +53,9 @@ Route::post('/login', [PassportAuthController::class, 'login'])->name('login');
 
     Route::prefix('reports')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'generateReport']);
+        Route::get('/dashboard-counters', [DashboardController::class, 'generateCountersReport']);
+        Route::get('/dashboard-topfives', [DashboardController::class, 'generateTopFivesReport']);
+        Route::get('/dashboard-lastbooks', [DashboardController::class, 'generateLastBooksReport']);
         Route::get('/book-by-author', [BookByAuthorReportController::class, 'generateReport']);
         Route::get('/book-by-author-grouping-authors', [BookByAuthorGroupingAuthorsReportController::class, 'generateReport']);
         Route::get('/book-by-author-grouping-books', [BookByAuthorGroupingBooksReportController::class, 'generateReport']);
