@@ -15,7 +15,7 @@ class BookResource extends JsonResource
             'title' => $this->Titulo,
             'publisher' => $this->Editora,
             'edition' => $this->Edicao,
-            'year_publication' => $this->AnoPublicacao,
+            'publicationYear' => $this->AnoPublicacao,
             'price' => str_replace('.', ',', $this->Valor),
             'created_at' => Carbon::parse($this->created_at)->format('d/m/Y'),
             'updated_at' => Carbon::parse($this->updated_at)->format('d/m/Y'),
