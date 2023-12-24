@@ -26,7 +26,8 @@ return [
             'unique' => 'Já existe registro com este nome.'
         ],
         'description' => [
-            'unique' => 'Já existe registro com esta descrição.'
+            'unique' => 'Já existe registro com esta descrição.',
+            'regex' => 'Insira uma descrição válida.',
         ],
         'title' => [
             'required' => 'O campo Título é obrigatório.',
