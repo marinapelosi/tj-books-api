@@ -10,13 +10,13 @@ return new class extends Migration
         DB::statement("
             CREATE VIEW report_books_by_author_grouping_by_authors_view AS
             SELECT
-                STRING_AGG(DISTINCT autores.\"Nome\", ', ') AS Autores,
-                livros.\"Titulo\" AS Livro,
-                livros.\"Editora\" AS Editora,
-                livros.\"Edicao\" AS Edição,
-                livros.\"AnoPublicacao\" AS Publicação,
-                REPLACE(CAST(livros.\"Valor\" AS VARCHAR), '.', ',') AS Valor,
-                STRING_AGG(DISTINCT assuntos.\"Descricao\", ', ' ORDER BY assuntos.\"Descricao\" ASC) AS Assuntos
+                STRING_AGG(DISTINCT autores.\"Nome\", ', ') AS authors,
+                livros.\"Titulo\" AS book,
+                livros.\"Editora\" AS publisher,
+                livros.\"Edicao\" AS edition,
+                livros.\"AnoPublicacao\" AS publicationYear,
+                REPLACE(CAST(livros.\"Valor\" AS VARCHAR), '.', ',') AS price,
+                STRING_AGG(DISTINCT assuntos.\"Descricao\", ', ' ORDER BY assuntos.\"Descricao\" ASC) AS subjects
             FROM
                 autores
             JOIN
@@ -30,7 +30,7 @@ return new class extends Migration
             GROUP BY
                 livros.\"Codl\", livros.\"Titulo\", livros.\"Editora\", livros.\"Edicao\", livros.\"AnoPublicacao\", livros.\"Valor\"
             ORDER BY
-                livros.\"Titulo\", livros.\"AnoPublicacao\" ASC;
+                authors ASC, livros.\"Titulo\", livros.\"AnoPublicacao\" ASC;
         ");
     }
 
