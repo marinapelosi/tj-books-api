@@ -558,7 +558,7 @@ Suas funcionalidades envolvem:
 O Laravel foi escolhido como backend porque ele auxilia na criação de api seguras, organizadas e em boas práticas de clean code. 
 
 ### Por que banco de dados PostgresSQL?
-O PostgresSQL foi escolhido devido ao seu suporte robusto a transações, escalabilidade e desempenho. A escolha também foi feita fizando sua capacidade de extensão para necessidades específicas, como o PostGIS, por exemplo, caso fosse necessário acoplar um sistema de cálculo de entrega para os livros.
+O PostgresSQL foi escolhido devido ao seu suporte robusto a transações, escalabilidade e desempenho. A escolha também foi feita visando sua capacidade de extensão para necessidades específicas, como o PostGIS, por exemplo, caso fosse necessário acoplar um sistema de cálculo de entrega para os livros.
 
 ### Melhorias de performance no banco de dados
 Conforme solicitado, a integridade do banco de dados foi mantida, os nomes dos campos foram mantidos. Entretanto, como autorizado, algumas mudanças foram feitas para fins de melhoria de desempenho. 
