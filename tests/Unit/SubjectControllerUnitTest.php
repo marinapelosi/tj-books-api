@@ -16,7 +16,7 @@ class SubjectControllerUnitTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->subjectController = new \App\Http\Controllers\Subject\SubjectController();
+        $this->subjectController = new SubjectController();
     }
 
     public function testShouldCreateSubjectSuccessfully()
@@ -32,15 +32,6 @@ class SubjectControllerUnitTest extends TestCase
         $response = $this->subjectController->store($requestMock);
 
         $this->assertEquals(201, $response->getStatusCode());
-    }
-
-    public function testShouldNotCreateSubjectBecauseFormRequestValidation()
-    {
-        $requestPayload = [];
-
-        $response = $this->post('/api/authors', $requestPayload);
-
-        $response->assertStatus(302);
     }
 
     public function testShouldUpdateSubjectSuccessfully()
@@ -72,18 +63,6 @@ class SubjectControllerUnitTest extends TestCase
 
         $this->assertEquals(200, $response->getStatusCode());
     }
-
-//    public function testShouldNotDeleteSubjectBecauseHasBooks()
-//    {
-//        $subject = Subject::create([
-//            'Descricao' => 'Subject to be Deleted',
-//        ]);
-//
-//        $response = $this->subjectController->destroy($subject->CodAs);
-//
-//        $this->assertEquals(200, $response->getStatusCode());
-//    }
-
 }
 
 

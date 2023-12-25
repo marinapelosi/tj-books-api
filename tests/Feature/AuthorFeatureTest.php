@@ -1,6 +1,5 @@
 <?php
 
-use App\Exceptions\SubjectWithBooksException;
 use Tests\TestCase;
 use App\Models\Author;
 use App\Models\Subject;
@@ -77,16 +76,6 @@ class AuthorFeatureTest extends TestCase
             'Descricao' => 'Subject',
         ]);
 
-//        $book = Book::create([
-//            'title' => 'Teste de edição',
-//            'publisher' => 'Sextante',
-//            'edition' => '1',
-//            'publicationYear' => '2023',
-//            'price' => '20,00',
-//            'authors' => [$author->CodAu],
-//            'subjects' => [$subject->CodAs]
-//        ]);
-
         $book = Book::create([
             'Titulo' => 'Teste de edição',
             'Editora' => 'Sextante',
@@ -95,12 +84,12 @@ class AuthorFeatureTest extends TestCase
             'Valor' => '20.00'
         ]);
 
-        $bookAuthor = BookAuthor::create([
+        BookAuthor::create([
             'Livro_Codl' => $book->Codl,
             'Autor_CodAu' => $author->CodAu
         ]);
 
-        $bookSubject = BookSubject::create([
+        BookSubject::create([
             'Livro_Codl' => $book->Codl,
             'Assunto_CodAs' => $subject->CodAs
         ]);

@@ -37,15 +37,6 @@ class AuthorControllerUnitTest extends TestCase
         $this->assertEquals(201, $response->getStatusCode());
     }
 
-    public function testShouldNotCreateAuthorBecauseFormRequestValidation()
-    {
-        $requestPayload = [];
-
-        $response = $this->post('/api/authors', $requestPayload);
-
-        $response->assertStatus(302);
-    }
-
     public function testShouldUpdateAuthorSuccessfully()
     {
         $author = Author::create([
@@ -75,18 +66,6 @@ class AuthorControllerUnitTest extends TestCase
 
         $this->assertEquals(200, $response->getStatusCode());
     }
-
-//    public function testShouldNotDeleteAuthorBecauseHasBooks()
-//    {
-//        $author = Author::create([
-//            'Nome' => 'Author to be Deleted',
-//        ]);
-//
-//        $response = $this->authorController->destroy($author->CodAu);
-//
-//        $this->assertEquals(200, $response->getStatusCode());
-//    }
-
 }
 
 

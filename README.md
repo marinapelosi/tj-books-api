@@ -19,7 +19,8 @@ Para acessar a documentação do Front, [clique aqui]().
     - Fluxo ponta a ponta de `read`, com tratamento de dados para mascarar campos do banco de dados
     - Fluxo ponta a ponta de `create/update`, com pré-validações
     - !!!!!! VERIFICAR SE DÁ TEMPOREGRAS DE NEGÓCIO (VALIDAÇÕES)
-  - (em progresso) TDD
+    - Servicessssss
+  - TDD
   - Sugestão de melhorias
   - Considerações finais
 
@@ -29,10 +30,11 @@ Para acessar a documentação do Front, [clique aqui]().
 ## Introdução 
  
 TJ BOOKS API é um microsserviço criado para ser acessado via api, a fim de cuidar de toda a regra de negócio de um cadastro de livros.
-Suas funcionalidades envolvem: 
+Suas funcionalidades envolvem:
+
 - CRUD de Autores, Assuntos e Livros, incorporando regras de negócio específicas.
 - Relatórios: o principal agrupado por autor e dados para uso de dashboards.
-- TDD (em construção testes para as persistências)
+- TDD
 
 -------
 
@@ -675,7 +677,96 @@ Outras views foram criadas, mas só esta está sendo usada por estar alinhada ao
 
 -------
 ## TDD
-Em construção
+
+Alguns testes (Unitários e Feature) foram criados para as classes principais, a fim de garantir a persistência de dados (create, update, delete).
+
+As entidades que possuem teste são: 
+
+### Author
+> Unitários: AuthorRequestUnitTest, AuthorControllerUnitTest
+
+Que irão testar o funcionamento dos métodos das persistências de autores e suas validações.
+
+> Feature: AuthorFeatureTest
+
+Que irá testar o funcionamento das persistências por meio dos endpoints.
+
+
+### Subject
+> Unitários: SubjectRequestUnitTest, SubjectControllerUnitTest
+
+Que irão testar o funcionamento dos métodos das persistências de assuntos e suas validações.
+
+> Feature: SubjectFeatureTest
+
+Que irá testar o funcionamento das persistências por meio dos endpoints.
+
+### Book
+> Unitários: BookRequestUnitTest, BookControllerUnitTest
+
+Que irão testar o funcionamento dos métodos das persistências de livros e suas validações.
+
+> Feature: BookFeatureTest
+
+Que irá testar o funcionamento das persistências por meio dos endpoints.
+
+![test-1.png](doc-imgs%2Ftest-1.png)
+![test-2.png](doc-imgs%2Ftest-2.png)
+
+### Exemplo real de execução e retorno
+```
+  php artisan test
+```
+
+```
+   PASS  Tests\Unit\AuthorControllerUnitTest
+  ✓ should create author successfully                                                                                                                                     0.28s
+  ✓ should update author successfully                                                                                                                                     0.06s
+  ✓ should delete author successfully                                                                                                                                     0.06s
+
+   PASS  AuthorRequestUnitTest
+  ✓ should pass author validation successfully                                                                                                                            0.17s
+  ✓ should not pass author validation                                                                                                                                     0.02s
+
+   PASS  BookControllerUnitTest
+  ✓ should create book successfully                                                                                                                                       0.09s
+  ✓ should update book successfully                                                                                                                                       0.07s
+  ✓ should delete book successfully                                                                                                                                       0.07s
+
+   PASS  BookRequestUnitTest
+  ✓ should pass author validation successfully                                                                                                                            0.06s
+  ✓ should not pass author validation                                                                                                                                     0.06s
+
+   PASS  SubjectControllerUnitTest
+  ✓ should create subject successfully                                                                                                                                    0.08s
+  ✓ should update subject successfully                                                                                                                                    0.06s
+  ✓ should delete subject successfully                                                                                                                                    0.06s
+
+   PASS  SubjectRequestUnitTest
+  ✓ should pass subject validation successfully                                                                                                                           0.06s
+  ✓ should not pass subject validation                                                                                                                                    0.02s
+
+   PASS  AuthorFeatureTest
+  ✓ should create author successfully                                                                                                                                     0.09s
+  ✓ should not create author because form request validation                                                                                                              0.06s
+  ✓ should update author successfully                                                                                                                                     0.18s
+  ✓ should delete author successfully                                                                                                                                     0.07s
+  ✓ should not delete author because it has books                                                                                                                         0.07s
+
+   PASS  BookFeatureTest
+  ✓ should create book successfully                                                                                                                                       0.08s
+  ✓ should not create book because form request validation                                                                                                                0.07s
+  ✓ should update book successfully                                                                                                                                       0.09s
+  ✓ should delete book successfully                                                                                                                                       0.18s
+
+   PASS  SubjectFeatureTest
+  ✓ should create subject successfully                                                                                                                                    0.19s
+  ✓ should not create subject because form request validation                                                                                                             0.17s
+  ✓ should update subject successfully                                                                                                                                    0.06s
+  ✓ should delete subject successfully                                                                                                                                    0.16s
+  ✓ should not delete author because it has books
+```
+
 -------
 ## Sugestão de melhorias para expansão deste projeto no futuro
 
