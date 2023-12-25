@@ -1,6 +1,6 @@
 # TJ BOOKS API
 
-Para acessar a documentação do Front, [clique aqui]().
+Para acessar a documentação do Front, [clique aqui](https://github.com/marinapelosi/tj-books-front).
 
 ## Sumário
 - Introdução
@@ -18,8 +18,8 @@ Para acessar a documentação do Front, [clique aqui]().
   - Diagramas (CRUD)
     - Fluxo ponta a ponta de `read`, com tratamento de dados para mascarar campos do banco de dados
     - Fluxo ponta a ponta de `create/update`, com pré-validações
-    - !!!!!! VERIFICAR SE DÁ TEMPOREGRAS DE NEGÓCIO (VALIDAÇÕES)
-    - Servicessssss
+    - Regra de negócio adicional (Exclusão - Autor/Assunto)
+    - Services
   - TDD
   - Sugestão de melhorias
   - Considerações finais
@@ -144,7 +144,9 @@ Suas funcionalidades envolvem:
 
 ### Rotas com parâmetros (Obs.: as rotas filters não estão inclusas na doc porque não estão sendo usadas no app no momento, mas podemos falar delas na apresentação)
 
-#### POST `/api/login`
+#### POST `/api/login` 
+
+> LEMBRANDO QUE O LOGIN ESTÁ OCULTO NA API, POIS ESTÁ EM CONSTRUÇÃO. COMO NÃO É UM REQUISITO SOLICITADO, APENAS A ROTA FOI TRAZIDA PARA A DOCUMENTAÇÃO, CASO SEJA IMPLEMENTADO NO FUTURO.
 
 
 | Parâmetro | Tipagem | Validação                             | Descrição        | Liberada na branch main   |
@@ -671,8 +673,22 @@ Outras views foram criadas, mas só esta está sendo usada por estar alinhada ao
 > 7) A Model retorna o objeto response do banco de dados ao Controller e este segue.
 > 8) Em caso de possibilidade de erro, o Controller trata o erro e envia a resposta da API.
 > 9) Em caso de não possibilidade de erro, o Controller já envia direto a resposta da API.
- 
-![get-fluxo-api-gets.png](doc-imgs%2Fget-fluxo-api-gets.png)
+
+### Regra de negócio adicional (Exclusão - Autor/Assunto)
+
+![delete-author-subject-rule-has-books.png](doc-imgs%2Fdelete-author-subject-rule-has-books.png)
+
+> Legenda
+> Regra adicional para deleção de Autores e Assuntos. O sistema não permite a exclusão em caso de existência de associação com algum livro.
+
+### Services
+
+![services.png](doc-imgs%2Fservices.png)
+
+> Legenda
+> Alguns services foram criados para auxiliar o fluxo de código, garantindo uma melhor responsabilidade única e evitando a repetição de código.
+> BookAuthorService e BookSubjectService centralizam a adição/remoção de autores e assuntos nos livros.
+> BookFieldService centraliza a conversão dos campos vindos da transferência do DTO.
 
 
 -------
