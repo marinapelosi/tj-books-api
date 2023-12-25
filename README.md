@@ -15,9 +15,9 @@ Para acessar a documentação do Front, [clique aqui]().
   - okTabelas nativas do Laravel e Laravel Passport OAuth2
   - okRelacionamentos entre tabelas via Eloquent
   - okCriação de View no BD para relatório
-  - Diagramas
-    - Fluxo ponta a ponta e validações
-    - Sequência de cadastro
+  - okDiagramas (CRUD)
+    - Fluxo ponta a ponta de `read`, com tratamento de dados para mascarar campos do banco de dados
+    - Fluxo ponta a ponta de `create/update`, com pré-validações
   - TDD
   - okSugestão de melhorias
   - okConsiderações finais
@@ -637,13 +637,44 @@ Outras views foram criadas, mas só esta está sendo usada por estar alinhada ao
 
 --------
 
-## Diagramas
-### Fluxo ponta a ponta e validações
-### Sequência de cadastro
+## Diagramas (CRUD)
+
+### Fluxo ponta a ponta de `read`, com tratamento de dados para mascarar campos do banco de dados
+
+![get-fluxo-api-gets.png](doc-imgs%2Fget-fluxo-api-gets.png)
+
+> Legenda
+>
+> 1) O request para api é feito via rotas GET,de listagem ou busca por id, seja pelo front ou postman.
+> 2) O Controller é acionado diretamente e acessa uma biblioteca (FilterLib) interna criada exclusivamente para auxiliar nos futuros filtros para este projeto. Quando não há parâmetro de filtro, que é o nosso caso, ela faz o `get` usando as parametrizações passadas para ordenação, eloquent relations, dentre outras.
+> 3) A FilterLib de cada entidade é responsável por acessar a camada de persistência Model e adicionar os parâmetros necessários para busca, seja com filtros ou não.
+> 4) A Model solicita ao banco de dados as informações solicitadas e retorna para FilterLib os dados crus, ou seja, com os campos íntegros no banco de dados, e com os relacionamentos solicitatos pelo eloquent ORM.
+> 5) Com os dados, um Resource é acionado para a entidade e este é um recurso do Laravel para que se possa personalizar o retorno dos dados. É semelhante ao DTO, mas é exclusivamente para retornar os `campo/valor` a serem utilizados pelo front, então aqui é possível mascarar os reais nomes dos campos no banco de dados. Proporcionando sanitização também na saída de dados.
+> 6) Com o resource executado, a resposta da API é retornada.
+
+
+### Fluxo ponta a ponta de `create/update`, com pré-validações
+
+![post-put-fluxo-end-to-end.png](doc-imgs%2Fpost-put-fluxo-end-to-end.png)
+
+> Legenda
+> 
+> 1) O request para api é feito via rotas POST/PUT, seja pelo front ou postman.
+> 2) O Form Request é um recurso do Laravel que permite fazer a validação antes mesmo de iniciar o Controller, para preservar o desempenho. Ao passar pelo Form Request, é utilizado um Validator que possui validações por parametrização e evita a escrita de diversos ifs para verificar o que está vindo e já faz uma validação direta, de acordo com os parâmetros passados.
+> 3) Caso exista erro de validação no Form Request, o Controller nem é acionado, pois a api já retorna por padrão os erros no response.
+> 4) Caso não exista erro, o Controller é iniciado e pode prosseguir. Por causa do Form Request, não é necessário inserir vários try/catchs ou ifs desnecessários, pois presume-se que ao passar pelo FormRequest, o tratamento de erro já foi feito na pré-validação. Vale lembrar que isso também faz com que os campos sejam sanitizados, para auxiliar na segurança sugerida pela OWASP.
+> 5) Seguindo o fluxo, o Controller aciona o DTO para fazer o transporte de dados, ou seja, converter os names dos campos do request para os reais nomes dos campos no banco de dados.
+> 6) A partir disto, os dados são passados para a camada de persistência utilizada no padrão MVC do Laravel, que é a Model, aplicando o método necessário `create` ou `update` para efetuar a persistência dos dados.
+> 7) A Model retorna o objeto response do banco de dados ao Controller e este segue.
+> 8) Em caso de possibilidade de erro, o Controller trata o erro e envia a resposta da API.
+> 9) Em caso de não possibilidade de erro, o Controller já envia direto a resposta da API.
+ 
+![get-fluxo-api-gets.png](doc-imgs%2Fget-fluxo-api-gets.png)
+
 
 -------
 ## TDD
-
+Em construção
 -------
 ## Sugestão de melhorias para expansão deste projeto no futuro
 
