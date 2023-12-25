@@ -8,7 +8,7 @@ Para acessar a documentação do Front, [clique aqui]().
 - Instalação + Comandos Úteis
 - Utilização da API
 - Documentação técnica (**Muito Importante**)
-  - Por que back-end em Laravel e front-end em React?
+  - Por que back-end em Laravel?
   - Por que banco de dados PostgresSQL?
   - Melhorias de performance no banco de dados
   - Utilização de DTO para manter integridade dos campos no modelo de dados
@@ -549,7 +549,7 @@ Suas funcionalidades envolvem:
 
 ## Documentação técnica
 
-### Por que back-end em Laravel e front-end em React?
+### Por que back-end em Laravel?
 O Laravel foi escolhido como backend porque ele auxilia na criação de api seguras, organizadas e em boas práticas de clean code. 
 
 ### Por que banco de dados PostgresSQL?
