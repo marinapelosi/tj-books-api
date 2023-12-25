@@ -18,6 +18,7 @@ Para acessar a documentação do Front, [clique aqui]().
   - Diagramas (CRUD)
     - Fluxo ponta a ponta de `read`, com tratamento de dados para mascarar campos do banco de dados
     - Fluxo ponta a ponta de `create/update`, com pré-validações
+    - !!!!!! VERIFICAR SE DÁ TEMPOREGRAS DE NEGÓCIO (VALIDAÇÕES)
   - (em progresso) TDD
   - Sugestão de melhorias
   - Considerações finais

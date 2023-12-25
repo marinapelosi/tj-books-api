@@ -2,15 +2,12 @@
 
 namespace Tests\Unit;
 
-use Illuminate\Support\Facades\Log;
 use Tests\TestCase;
 use App\Http\Controllers\Author\AuthorController;
 use App\Http\Requests\AuthorRequest;
 use App\Models\Author;
 use App\Models\DTO\AuthorDTO;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Symfony\Component\Uid\Ulid;
 use Mockery;
 
 class AuthorControllerUnitTest extends TestCase
@@ -25,7 +22,7 @@ class AuthorControllerUnitTest extends TestCase
         $this->authorController = new AuthorController();
     }
 
-    public function testStoreAuthor()
+    public function testShouldCreateAuthorSuccessfully()
     {
         $requestMock = $this->createMock(AuthorRequest::class);
         $requestMock->expects($this->once())->method('validated')->willReturn(['name' => 'Marina Pelosi']);
@@ -40,31 +37,54 @@ class AuthorControllerUnitTest extends TestCase
         $this->assertEquals(201, $response->getStatusCode());
     }
 
-//    public function testUpdateAuthor()
+    public function testShouldNotCreateAuthorBecauseFormRequestValidation()
+    {
+        $requestPayload = [];
+
+        $response = $this->post('/api/authors', $requestPayload);
+
+        $response->assertStatus(302);
+    }
+
+    public function testShouldUpdateAuthorSuccessfully()
+    {
+        $author = Author::create([
+            'Nome' => 'Author to be Updated',
+        ]);
+
+        $requestMock = $this->createMock(AuthorRequest::class);
+        $requestMock->expects($this->once())->method('validated')->willReturn(['name' => 'Marina Updated']);
+
+        $dtoMock = Mockery::mock(AuthorDTO::class);
+        $dtoMock->shouldReceive('getAttribute')->andReturn('Marina Updated');
+
+        $this->app->instance(AuthorRequest::class, $requestMock);
+
+        $response = $this->authorController->update($requestMock, $author->CodAu);
+
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    public function testShouldDeleteAuthorSuccessfully()
+    {
+        $author = Author::create([
+            'Nome' => 'Author to be Deleted',
+        ]);
+
+        $response = $this->authorController->destroy($author->CodAu);
+
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
+//    public function testShouldNotDeleteAuthorBecauseHasBooks()
 //    {
-//        // Criar um autor no banco de dados para ser atualizado
 //        $author = Author::create([
-//            'Nome' => 'Author to be Updated',
+//            'Nome' => 'Author to be Deleted',
 //        ]);
 //
-//        // Mock dos dados a serem enviados no corpo da requisição
-//        $requestData = [
-//            'name' => 'Updated Name',
-//        ];
+//        $response = $this->authorController->destroy($author->CodAu);
 //
-//        // Faz a requisição para o endpoint de atualização
-////        $response = $this->call('PUT', "api/authors/{$author->id}", $requestData);
-//        $response = $this->withHeaders(['X-CSRF-TOKEN' => csrf_token()])
-//            ->json('PUT', "api/authors/{$author->id}", $requestData, ['Accept' => 'application/json']);
-//
-//        // Verifica se a resposta está correta
-//        $response->assertStatus(200);
-//
-//        // Verifica se o nome do autor foi atualizado no banco de dados
-//        $this->assertDatabaseHas('authors', [
-//            'CodAu' => $author->id,
-//            'Nome' => 'Updated Name',
-//        ]);
+//        $this->assertEquals(200, $response->getStatusCode());
 //    }
 
 }
