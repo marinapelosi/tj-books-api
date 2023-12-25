@@ -3,24 +3,24 @@
 Para acessar a documentação do Front, [clique aqui]().
 
 ## Sumário
-- okIntrodução
-- okRequisitos
-- okInstalação + Comandos Úteis
-- okUtilização da API
-- okDocumentação técnica (**Muito Importante**)
-  - okPor que back-end em Laravel e front-end em React?
-  - okPor que banco de dados PostgresSQL?
-  - okMelhorias de performance no banco de dados
-  - okUtilização de DTO para manter integridade dos campos no modelo de dados
-  - okTabelas nativas do Laravel e Laravel Passport OAuth2
-  - okRelacionamentos entre tabelas via Eloquent
-  - okCriação de View no BD para relatório
-  - okDiagramas (CRUD)
+- Introdução
+- Requisitos
+- Instalação + Comandos Úteis
+- Utilização da API
+- Documentação técnica (**Muito Importante**)
+  - Por que back-end em Laravel e front-end em React?
+  - Por que banco de dados PostgresSQL?
+  - Melhorias de performance no banco de dados
+  - Utilização de DTO para manter integridade dos campos no modelo de dados
+  - Tabelas nativas do Laravel e Laravel Passport OAuth2
+  - Relacionamentos entre tabelas via Eloquent
+  - Criação de View no BD para relatório
+  - Diagramas (CRUD)
     - Fluxo ponta a ponta de `read`, com tratamento de dados para mascarar campos do banco de dados
     - Fluxo ponta a ponta de `create/update`, com pré-validações
-  - TDD
-  - okSugestão de melhorias
-  - okConsiderações finais
+  - (em progresso) TDD
+  - Sugestão de melhorias
+  - Considerações finais
 
 
 -------
